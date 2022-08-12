@@ -93,29 +93,22 @@ function clickSelector(clicked_Id) {
         currentPlayer = player2      //changes turn to other player
         return currentPlayer;
     };
-    if (currentPlayer == player2) {
-        heading.text('It is X turn.');
-        oPlayerSelections.push(boxId);
-        console.log('xplayerselections', xPlayerSelections);
-        console.log('winning combos', winningCombos[0]);
-        console.log(oPlayerSelections, 'oplayerselections');
-        console.log(moveOptions, 'move options');
-        for( let i = 0; i < winningCombos.length; i++) {
-            console.log(winningCombos[i], winningCombos.length, 'Win conditions');
-            console.log('Testtesttest', typeof winningCombos[i][0]);
-            console.log('typeof xplayer', typeof xPlayerSelections[0]);
+    if (currentPlayer == player2) {         
+        heading.text('It is X turn.');        //changes heading text
+        oPlayerSelections.push(boxId);        //pushes selection to array to it can be compared
+        for( let i = 0; i < winningCombos.length; i++) {  //iterates through winning combos array to sees if anything in player selection array matches
             if(oPlayerSelections.includes(winningCombos[i][0]) && oPlayerSelections.includes(winningCombos[i][1]) && oPlayerSelections.includes(winningCombos[i][2])) {
-                allDivs.removeAttr("onClick");
-                heading.text("O Wins!!!!!");
-                document.getElementById("winAlert").removeAttribute('style');
-                winAlert.text("End of Game, O Wins!!!!")
-            } else if (moveOptions.length == 0) {
-                heading.text('Tie game');
-                document.getElementById("winAlert").removeAttribute('style');
-                winAlert.text("End of Game, Tie game!")
+                allDivs.removeAttr("onClick");    //makes all squares unclickable on win
+                heading.text("O Wins!!!!!");      //changes heading text on win
+                document.getElementById("winAlert").removeAttribute('style');   //makes alert visible
+                winAlert.text("End of Game, O Wins!!!!")     //alert banner text
+            } else if (moveOptions.length == 0) {        //detects tie
+                heading.text('Tie game');                //changes header to tie text
+                document.getElementById("winAlert").removeAttribute('style');  //shows alert banner
+                winAlert.text("End of Game, Tie game!")     //alert banner text
             };
         };
-        currentPlayer = player1
+        currentPlayer = player1        //flips player turn
         return currentPlayer;
     };
 };
