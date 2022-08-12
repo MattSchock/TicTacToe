@@ -64,40 +64,33 @@ function resetButton () {
 
 
 
-//experimental code below
+//Game Logic
 function clickSelector(clicked_Id) {
-    let boxId = clicked_Id;
-    document.getElementById(boxId).innerHTML = currentPlayer;
-    document.getElementById(boxId).removeAttribute("onClick");
-    for(let i = 0; i < moveOptions.length; i++) {
+    let boxId = clicked_Id;                           //Transfers element Id to variable
+    document.getElementById(boxId).innerHTML = currentPlayer;   //Writes either x or o to DOM
+    document.getElementById(boxId).removeAttribute("onClick");  //Makes selected box unclickable
+    for(let i = 0; i < moveOptions.length; i++) {               //iterates through available move options and removes whatever was played
         if (moveOptions[i] == boxId) {
             moveOptions.splice(i, 1);
         }
     };
 
     if (currentPlayer == player1) {
-        heading.text('It is O turn.');
-        xPlayerSelections.push(boxId);
-        console.log('xplayerselections', xPlayerSelections);
-        console.log('winning combos', winningCombos[0]);
-        console.log(xPlayerSelections, 'xplayerselections');
-        console.log(moveOptions, 'move options');
-        for( let i = 0; i < winningCombos.length; i++) {
-            console.log(winningCombos[i], winningCombos.length, 'Win conditions');
-            console.log('Testtesttest', typeof winningCombos[i][0]);
-            console.log('typeof xplayer', typeof xPlayerSelections[0]);
+        heading.text('It is O turn.');          //Changes heading
+        xPlayerSelections.push(boxId);          //pushes selection to array to be compared
+        for( let i = 0; i < winningCombos.length; i++) {    //iterates through winning combos array to sees if anything in player selection array matches
             if(xPlayerSelections.includes(winningCombos[i][0]) && xPlayerSelections.includes(winningCombos[i][1]) && xPlayerSelections.includes(winningCombos[i][2])) {
-                allDivs.removeAttr("onClick");
-                heading.text("X Wins!!!!!");
-                document.getElementById("winAlert").removeAttribute('style');
-                winAlert.text("End of Game. Congrats X Wins!!!!")
-            } else if (moveOptions.length == 0) {
-                heading.text('Tie game');
-                document.getElementById("winAlert").removeAttribute('style');
-                winAlert.text("End of Game. Tie game!");
+                allDivs.removeAttr("onClick");    //if game is over removes ability to click squares on all squares
+                heading.text("X Wins!!!!!");      //changes heading to winning text
+                document.getElementById("winAlert").removeAttribute('style');    //shows alert banner on bottom
+                winAlert.text("End of Game. Congrats X Wins!!!!")      //populates banner with winning text
+            } else if (moveOptions.length == 0) {           //detects if a game has tied out
+                heading.text('Tie game');                  //changes heading text to tie
+                document.getElementById("winAlert").removeAttribute('style');    //shows alert banner
+                winAlert.text("End of Game. Tie game!");         //changes text of alert banner
             };
         };
-        currentPlayer = player2
+        currentPlayer = player2      //changes turn to other player
         return currentPlayer;
     };
     if (currentPlayer == player2) {
@@ -126,80 +119,3 @@ function clickSelector(clicked_Id) {
         return currentPlayer;
     };
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Working code below
-// function clickSelector(clicked_Id) {
-//     // console.log(clicked_Id);
-//     let boxId = clicked_Id;
-//      console.log(boxId);
-//     document.getElementById(boxId).innerHTML = currentPlayer;
-//     document.getElementById(boxId).removeAttribute("onClick");
-//     // console.log(document.getElementById(boxId).innerHTML);
-//     for(let i =0; i < moveOptions.length; i++) {
-//         if (moveOptions[i] == boxId) {
-//             moveOptions.splice(i, 1);
-//         }
-//     };
-//     console.log("available moves", moveOptions);
-    
-//     if (currentPlayer == player1) {
-//         heading.text('It is O turn.');
-//         xPlayerSelections.push(boxId);
-//         console.log('xPlayer', xPlayerSelections);
-//         if(xPlayerSelections.includes('box0') && xPlayerSelections.includes('box1') && xPlayerSelections.includes('box2') 
-//         || xPlayerSelections.includes('box3') && xPlayerSelections.includes('box4') && xPlayerSelections.includes('box5') 
-//         || xPlayerSelections.includes('box6') && xPlayerSelections.includes('box7') && xPlayerSelections.includes('box8')
-//         || xPlayerSelections.includes('box0') && xPlayerSelections.includes('box3') && xPlayerSelections.includes('box6')
-//         || xPlayerSelections.includes('box1') && xPlayerSelections.includes('box4') && xPlayerSelections.includes('box7')
-//         || xPlayerSelections.includes('box2') && xPlayerSelections.includes('box5') && xPlayerSelections.includes('box8')
-//         || xPlayerSelections.includes('box0') && xPlayerSelections.includes('box4') && xPlayerSelections.includes('box8')
-//         || xPlayerSelections.includes('box2') && xPlayerSelections.includes('box4') && xPlayerSelections.includes('box6')) {
-//             allDivs.removeAttr("onClick");
-//             heading.text("X Wins!!!!!!!")
-//         } else if (moveOptions.length == 0) {
-//             heading.text('Tie game')
-//         }
-//         currentPlayer = player2
-//         return currentPlayer;
-//     } else {
-//         heading.text('it is X turn');
-//         oPlayerSelections.push(boxId);
-//         console.log('oPlayer', oPlayerSelections);
-//         if(xPlayerSelections.includes('box0') && xPlayerSelections.includes('box1') && xPlayerSelections.includes('box2') 
-//         || xPlayerSelections.includes('box3') && xPlayerSelections.includes('box4') && xPlayerSelections.includes('box5') 
-//         || xPlayerSelections.includes('box6') && xPlayerSelections.includes('box7') && xPlayerSelections.includes('box8')
-//         || xPlayerSelections.includes('box0') && xPlayerSelections.includes('box3') && xPlayerSelections.includes('box6')
-//         || xPlayerSelections.includes('box1') && xPlayerSelections.includes('box4') && xPlayerSelections.includes('box7')
-//         || xPlayerSelections.includes('box2') && xPlayerSelections.includes('box5') && xPlayerSelections.includes('box8')
-//         || xPlayerSelections.includes('box0') && xPlayerSelections.includes('box4') && xPlayerSelections.includes('box8')
-//         || xPlayerSelections.includes('box2') && xPlayerSelections.includes('box4') && xPlayerSelections.includes('box6')) {
-//             allDivs.removeAttr("onClick");
-//             heading.text("O Wins!!!!!!!")
-//         } else if (moveOptions.length == 0) {
-//             heading.text('Tie game')
-//         }
-//         currentPlayer = player1;
-//         return currentPlayer;
-
-//     };
-// };
-
-
