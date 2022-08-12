@@ -23,13 +23,6 @@ let box8 = $('#box8')[0].id;
 let moveOptions = ['box0', 'box1', 'box2', 'box3', 'box4', 'box5', 'box6', 'box7', 'box8'];
 
 
-//im pretty sure this currently doesnt do anything
-const boxIdArr = [
-    box0, box1, box2, box3, box4, box5, box6, box7, box8
-];
-
-// console.log(boxIdArr);
-
 
 //Win conditions
 const winningCombos = [
