@@ -1,3 +1,6 @@
+
+
+
 const player1 = 'X';     //assigns player1 as string x
 const player2 = 'O';     //assigns player 2 as string o
 let heading = $("#heading");      //jquery to target heading to change on turns
